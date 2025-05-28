@@ -1,8 +1,13 @@
-import ResentProjects from "@/components/ResentProjects";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import MagicButton from "@/components/ui/MagicButton";
 import { FaAngleLeft  } from 'react-icons/fa6'
+
+import dynamic from "next/dynamic";
+
+const ResentProjects = dynamic(() => import("@/components/ResentProjects"), {
+  ssr: false,
+});
 
 export default function PortfolioPage() {
   return (
