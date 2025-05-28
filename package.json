@@ -23,7 +23,9 @@
     "react-lottie": "^1.2.10",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.174.0"
+    "three": "^0.174.0",
+    "gatsby": "^5.14.3",
+    "gatsby-plugin-sass": "^6.14.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
