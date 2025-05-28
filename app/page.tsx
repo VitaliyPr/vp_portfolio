@@ -6,12 +6,7 @@ import Clients from "@/components/Clients";
 import Experience from "@/components/Experience";
 import Approach from "@/components/Approach";
 import Footer from "@/components/Footer";
-
-import dynamic from "next/dynamic";
-
-const ResentProjects = dynamic(() => import("@/components/ResentProjects"), {
-  ssr: false,
-});
+import ProjectsMain from "@/components/ProjectsMain";
 
 export default function Home() {
   return (
@@ -22,14 +17,7 @@ export default function Home() {
         />
         <Hero />
         <Grid />
-        <ResentProjects
-          title="A small selection of"
-          highlighted="recent projects"
-          showButton={true}
-          lazy={false}
-          initialCount={4}
-          cardWidth="sm:w-[570px] w-[80vw]"
-        />
+        <ProjectsMain />
         <Clients />
         <Experience />
         <Approach />
