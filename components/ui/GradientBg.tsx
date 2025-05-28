@@ -39,6 +39,8 @@ export const BackgroundGradientAnimation = ({
   const [curY, setCurY] = useState(0);
   const [tgX, setTgX] = useState(0);
   const [tgY, setTgY] = useState(0);
+
+  // Встановлення CSS-змінних (залежності можна залишити пустими, якщо вони не змінюються під час життєвого циклу)
   useEffect(() => {
     if (typeof document !== "undefined") {
       document.body.style.setProperty(
@@ -58,22 +60,38 @@ export const BackgroundGradientAnimation = ({
       document.body.style.setProperty("--size", size);
       document.body.style.setProperty("--blending-value", blendingValue);
     }
-  }, []);
+  }, [
+    gradientBackgroundStart,
+    gradientBackgroundEnd,
+    firstColor,
+    secondColor,
+    thirdColor,
+    fourthColor,
+    fifthColor,
+    pointerColor,
+    size,
+    blendingValue,
+  ]);
 
+  // Анімація плавного руху
   useEffect(() => {
-    function move() {
-      if (!interactiveRef.current) {
-        return;
-      }
-      setCurX(curX + (tgX - curX) / 20);
-      setCurY(curY + (tgY - curY) / 20);
-      interactiveRef.current.style.transform = `translate(${Math.round(
-        curX
-      )}px, ${Math.round(curY)}px)`;
-    }
+    let animationFrameId: number;
 
-    move();
-  }, [tgX, tgY]);
+    const move = () => {
+      setCurX((prevX) => prevX + (tgX - prevX) / 20);
+      setCurY((prevY) => prevY + (tgY - prevY) / 20);
+
+      if (interactiveRef.current) {
+        interactiveRef.current.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+      }
+
+      animationFrameId = requestAnimationFrame(move);
+    };
+
+    animationFrameId = requestAnimationFrame(move);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [tgX, tgY, curX, curY]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (interactiveRef.current) {
@@ -98,11 +116,7 @@ export const BackgroundGradientAnimation = ({
       <svg className="hidden">
         <defs>
           <filter id="blurMe">
-            <feGaussianBlur
-              in="SourceGraphic"
-              stdDeviation="10"
-              result="blur"
-            />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
             <feColorMatrix
               in="blur"
               mode="matrix"
