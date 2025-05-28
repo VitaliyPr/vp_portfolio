@@ -26,14 +26,20 @@ const ResentProjects = ({
   cardWidth = "sm:w-[570px] w-[80vw]"
 }: ResentProjectsProps) => {
   const LOAD_MORE_COUNT = 3;
-  const [visibleCount, setVisibleCount] = useState(initialCount);
+
+  const [visibleCount, setVisibleCount] = useState(lazy ? initialCount : initialCount);
 
   useEffect(() => {
     if (!lazy) return;
 
     const handleScroll = () => {
       const scrollPosition = window.innerHeight + window.scrollY;
-      const documentHeight = document?.body?.offsetHeight || 0;
+
+      // Захищене звернення до document.body.offsetHeight
+      const documentHeight =
+        typeof document !== "undefined" && document.body
+          ? document.body.offsetHeight
+          : 0;
 
       if (scrollPosition >= documentHeight - 100 && visibleCount < projects.length) {
         setVisibleCount((prev) => Math.min(prev + LOAD_MORE_COUNT, projects.length));

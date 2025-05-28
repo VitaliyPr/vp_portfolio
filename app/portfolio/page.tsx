@@ -1,4 +1,6 @@
+"use client";
 
+import ResentProjects from "@/components/ResentProjects";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import MagicButton from "@/components/ui/MagicButton";
@@ -17,7 +19,14 @@ export default function PortfolioPage() {
             />
           </div>
         </Link>
-
+        <ResentProjects 
+          title="From idea to code — " 
+          highlighted="see for yourself!" 
+          showButton={false} 
+          lazy={true}
+          initialCount={6}
+          cardWidth="sm:w-[350px] w-[80vw]"
+          />
         <Footer />
       </div>
     </main>
