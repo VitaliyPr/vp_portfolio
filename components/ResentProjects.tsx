@@ -6,6 +6,7 @@ import { PinContainer } from "./ui/3d-pin";
 import { FaLocationArrow } from "react-icons/fa6";
 import MagicButton from "./ui/MagicButton";
 import Link from "next/link";
+import Image from "next/image";
 
 type ResentProjectsProps = {
   title?: string;
@@ -61,7 +62,11 @@ const ResentProjects = ({
             <PinContainer title={link} href={link}>
               <div className={`relative flex items-center justify-center ${cardWidth} overflow-hidden h-[30vh] mb-10`}>
                 <div className="relative w-full h-full overflow-hidden lg:rounded-3xl bg-[#13162d]">
-                  <img src="/bg.png" alt="bg-img" />
+                  <Image 
+                    src="/bg.png" 
+                    alt="bg-img"
+                    layout="fill"
+                  />
                 </div>
                 <img src={img} alt={title} className="z-10 absolute bottom-0" />
               </div>

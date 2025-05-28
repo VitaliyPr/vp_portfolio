@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { ElementType, ReactNode, useRef } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -7,8 +7,18 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { useRef } from "react";
 import { cn } from "@/lib/utils";
+
+interface ButtonProps {
+  borderRadius?: string;
+  children: ReactNode;
+  as?: ElementType;
+  containerClassName?: string;
+  borderClassName?: string;
+  duration?: number;
+  className?: string;
+  [key: string]: unknown; // для додаткових пропсів
+}
 
 export function Button({
   borderRadius = "1.75rem",
@@ -19,16 +29,7 @@ export function Button({
   duration,
   className,
   ...otherProps
-}: {
-  borderRadius?: string;
-  children: React.ReactNode;
-  as?: any;
-  containerClassName?: string;
-  borderClassName?: string;
-  duration?: number;
-  className?: string;
-  [key: string]: any;
-}) {
+}: ButtonProps) {
   return (
     <Component
       className={cn(
@@ -69,21 +70,23 @@ export function Button({
   );
 }
 
+interface MovingBorderProps {
+  children: ReactNode;
+  duration?: number;
+  rx?: string;
+  ry?: string;
+  [key: string]: unknown;
+}
+
 export const MovingBorder = ({
   children,
   duration = 2000,
   rx,
   ry,
   ...otherProps
-}: {
-  children: React.ReactNode;
-  duration?: number;
-  rx?: string;
-  ry?: string;
-  [key: string]: any;
-}) => {
-  const pathRef = useRef<any>();
-  const progress = useMotionValue<number>(0);
+}: MovingBorderProps) => {
+  const pathRef = useRef<SVGRectElement>(null);
+  const progress = useMotionValue(0);
 
   useAnimationFrame((time) => {
     const length = pathRef.current?.getTotalLength();
@@ -93,14 +96,13 @@ export const MovingBorder = ({
     }
   });
 
-  const x = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).x
-  );
-  const y = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).y
-  );
+  const x = useTransform(progress, (val) => {
+    return pathRef.current ? pathRef.current.getPointAtLength(val).x : 0;
+  });
+
+  const y = useTransform(progress, (val) => {
+    return pathRef.current ? pathRef.current.getPointAtLength(val).y : 0;
+  });
 
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
 
