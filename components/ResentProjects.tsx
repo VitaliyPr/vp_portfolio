@@ -27,14 +27,19 @@ const ResentProjects = ({
 }: ResentProjectsProps) => {
   const LOAD_MORE_COUNT = 3;
 
-  const [visibleCount, setVisibleCount] = useState(lazy ? initialCount  : initialCount );
+  const [visibleCount, setVisibleCount] = useState(lazy ? initialCount : initialCount);
 
   useEffect(() => {
     if (!lazy) return;
 
     const handleScroll = () => {
       const scrollPosition = window.innerHeight + window.scrollY;
-      const documentHeight = document.body.offsetHeight;
+
+      // Захищене звернення до document.body.offsetHeight
+      const documentHeight =
+        typeof document !== "undefined" && document.body
+          ? document.body.offsetHeight
+          : 0;
 
       if (scrollPosition >= documentHeight - 100 && visibleCount < projects.length) {
         setVisibleCount((prev) => Math.min(prev + LOAD_MORE_COUNT, projects.length));
@@ -58,20 +63,25 @@ const ResentProjects = ({
 
       <div className="flex flex-wrap items-center p-4 gap-x-24 gap-y-8 mt-10">
         {displayedProjects.map(({ id, title, des, img, iconLists, link }) => (
-          <div key={id} className={`h-[32rem] lg:min-h-[32.5rem] flex items-center justify-center ${cardWidth}`}>
+          <div
+            key={id}
+            className={`h-[32rem] lg:min-h-[32.5rem] flex items-center justify-center ${cardWidth}`}
+          >
             <PinContainer title={link} href={link}>
-              <div className={`relative flex items-center justify-center ${cardWidth} overflow-hidden h-[30vh] mb-10`}>
+              <div
+                className={`relative flex items-center justify-center ${cardWidth} overflow-hidden h-[30vh] mb-10`}
+              >
                 <div className="relative w-full h-full overflow-hidden lg:rounded-3xl bg-[#13162d]">
-                  <Image 
-                    src="/bg.png" 
-                    alt="bg-img"
-                    layout="fill"
-                  />
+                  <Image src="/bg.png" alt="bg-img" layout="fill" />
                 </div>
                 <img src={img} alt={title} className="z-10 absolute bottom-0" />
               </div>
-              <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">{title}</h1>
-              <p className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2">{des}</p>
+              <h1 className="font-bold lg:text-2xl md:text-xl text-base line-clamp-1">
+                {title}
+              </h1>
+              <p className="lg:text-xl lg:font-normal font-light text-sm line-clamp-2">
+                {des}
+              </p>
               <div className="flex items-center justify-between mt-7 mb-3">
                 <div className="flex items-center">
                   {iconLists.map((icon, index) => (
