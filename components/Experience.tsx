@@ -1,6 +1,6 @@
 import { workExperience } from "@/data";
 import React from "react";
-import { Button } from "./ui/MovingBorders";
+
 
 const Experience = () => {
   return (
@@ -8,13 +8,11 @@ const Experience = () => {
       <h1 className="heading">
         My <span className="text-deepgreen-accent"> work experience</span>
       </h1>
-      <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10 ">
+      <div className="w-full mt-12 grid lg:grid-cols-2 grid-cols-1 gap-10 ">
         {workExperience.map((card) => (
-          <Button 
+          <div 
             key={card.id}
-            duration={Math.floor(Math.random() * 10000) + 10000}
-            borderRadius="1.75rem"
-            className="flex-1 text-white border-neutral-200 bg-deepgreen-surface"
+            className="flex-1 text-white border-neutral-200 bg-deepgreen-surface rounded-2xl border"
           >
             <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
               <img src={card.thumbnail} alt={card.thumbnail} className="lg:w-32 md:2-20 w-16" />
@@ -27,7 +25,7 @@ const Experience = () => {
                 </p>
               </div>
             </div>
-          </Button>
+          </div>
         ))}
       </div>
     </div>
