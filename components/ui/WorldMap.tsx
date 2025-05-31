@@ -46,7 +46,7 @@ export function WorldMap({
   };
 
   return (
-    <div className="flex items-center justify-center dark:bg-black-100 bg-white absolute left-0 top-36 md:top-24 w-full h-full">
+    <div className="flex items-center justify-center dark:bg-black-100 bg-white absolute left-0 top-20 md:top-24 w-full h-full">
       <Image
         src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
         className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,white_10%,white_90%,transparent)] pointer-events-none select-none"

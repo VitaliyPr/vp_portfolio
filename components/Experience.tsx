@@ -4,7 +4,7 @@ import React from "react";
 
 const Experience = () => {
   return (
-    <div className="py-20" id="experience">
+    <div className="py-20 max-md:py-10" id="experience">
       <h1 className="heading">
         My <span className="text-deepgreen-accent"> work experience</span>
       </h1>

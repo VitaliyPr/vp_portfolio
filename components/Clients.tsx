@@ -4,7 +4,7 @@ import { testimonials } from "@/data";
 
 const Clients = () => {
   return (
-    <div className="py-20" id="testimonials">
+    <div className="py-20 max-md:py-10" id="testimonials">
       <h1 className="heading">
         Kind words from <span className="text-deepgreen-accent"> satisfied clients</span>
       </h1>

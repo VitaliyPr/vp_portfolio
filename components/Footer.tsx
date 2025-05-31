@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 const Footer = () => {
   return (
-    <footer className='w-full pb-10 mb-[100px] md:mb-5' id="contact">
+    <footer className='w-full pb-10' id="contact">
       <div className="flex flex-col items-center">
         <h1 className="heading lg:max-w-[45vw]">
           Ready to take <span className="text-deepgreen-accent">your</span> digital presence to the next level?
@@ -20,8 +20,8 @@ const Footer = () => {
           />
         </a>
       </div>
-      <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
-        <p className="md:text-base text-small md:font-normal font-light">Copyright © 2025 Vitalii</p>
+      <div className="flex mt-16 md:flex-row flex-col max-md:flex-col-reverse justify-between items-center">
+        <p className="md:text-base text-small md:font-normal font-light max-md:mt-5">Copyright © 2025 Vitalii Prudnyk</p>
         <div className="flex ityem-center md:gap-3 gap-6">
           {socialMedia.map((profile) => (
             <a href={profile.link} key={profile.id} target="_blank" className="w-10 h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-180 bg-opacity-75 bg-deepgreen-surface rounded-lg border border-black-300">

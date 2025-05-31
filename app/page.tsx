@@ -23,7 +23,9 @@ export default function Home() {
           showButton={true}
           lazy={false}
           initialCount={4}
-          cardWidth="sm:w-[570px] w-[80vw]"
+          layoutCss="justify-center gap-x-[10vw] lg:gap-x-[6vw] xl:gap-x-24"
+          cardCss="w-[80vw] md:w-[36vw] xl:w-[535px] min-h-[44vh] md:min-h-[43vh] lg:min-h-[31rem] xl:min-h-[34rem]"
+          imageCss="w-[80vw] md:w-[36vw] xl:w-[535px] h-[21vh] md:h-[20vh] lg:h-[16rem] xl:h-[19rem]"
         />
         <Clients />
         <Experience />

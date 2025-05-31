@@ -14,7 +14,9 @@ type ResentProjectsProps = {
   showButton?: boolean;
   lazy?: boolean;
   initialCount?: number;
-  cardWidth?: string;
+  layoutCss?: string;
+  cardCss?: string;
+  imageCss?: string;
 };
 
 const ResentProjects = ({
@@ -23,7 +25,9 @@ const ResentProjects = ({
   showButton = true,
   lazy = false,
   initialCount = 4,
-  cardWidth = "sm:w-[570px] w-[80vw]"
+  layoutCss = "justify-center xl:gap-x-24",
+  cardCss = "sm:w-[570px] w-[80vw] h-[32rem] lg:min-h-[32.5rem]",
+  imageCss = "sm:w-[570px] w-[80vw] h-[30vh]"
 }: ResentProjectsProps) => {
   const LOAD_MORE_COUNT = 3;
 
@@ -61,15 +65,15 @@ const ResentProjects = ({
         {title} <span className="text-deepgreen-accent">{highlighted}</span>
       </h1>
 
-      <div className="flex flex-wrap items-center p-4 gap-x-24 gap-y-8 mt-10">
+      <div className={`flex flex-wrap items-center p-4 gap-y-8 mt-10 ${layoutCss}`}>
         {displayedProjects.map(({ id, title, des, img, iconLists, link }) => (
           <div
             key={id}
-            className={`h-[32rem] lg:min-h-[32.5rem] flex items-center justify-center ${cardWidth}`}
+            className={`flex items-center justify-center ${cardCss}`}
           >
             <PinContainer title={link} href={link}>
               <div
-                className={`relative flex items-center justify-center ${cardWidth} overflow-hidden h-[30vh] mb-10`}
+                className={`relative flex items-center justify-center overflow-hidden mb-10 ${imageCss}`}
               >
                 <div className="relative w-full h-full overflow-hidden lg:rounded-3xl bg-[#13162d]">
                   <Image src="/bg.png" alt="bg-img" layout="fill" />
