@@ -24,8 +24,8 @@ export default function Home() {
           lazy={false}
           initialCount={4}
           layoutCss="justify-center gap-x-[10vw] lg:gap-x-[6vw] xl:gap-x-24"
-          cardCss="w-[80vw] md:w-[36vw] xl:w-[535px] min-h-[44vh] md:min-h-[43vh] lg:min-h-[31rem] xl:min-h-[34rem]"
-          imageCss="w-[80vw] md:w-[36vw] xl:w-[535px] h-[21vh] md:h-[20vh] lg:h-[16rem] xl:h-[19rem]"
+          cardCss="w-[80vw] md:w-[36vw] xl:w-[535px] min-h-[26rem] md:min-h-[43vh] lg:min-h-[31rem] xl:min-h-[34rem]"
+          imageCss="w-[80vw] md:w-[36vw] xl:w-[535px] h-[13rem] md:h-[20vh] lg:h-[16rem] xl:h-[19rem]"
         />
         <Clients />
         <Experience />
