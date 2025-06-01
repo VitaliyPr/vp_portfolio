@@ -10,6 +10,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "VPStudio Portfolio",
   description: "Portfolio",
+  other: {
+    freelancehunt: "b7c824ea5d61b78",
+  },
 };
 
 export default function RootLayout({
